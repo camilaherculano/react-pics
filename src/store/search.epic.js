@@ -10,8 +10,8 @@ export const searchImageEpic = action$ =>
   action$.pipe(
     ofType(GET_UNSPLASH),
     tap(console.log(action$.payload)),
-    switchMap(action =>
-      unsplash
+    switchMap(async action =>
+      await unsplash
         .get('/search/photos', {
           params: { query: action.payload.term }
         })
