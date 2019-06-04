@@ -16,7 +16,7 @@ export const successUnsplash = images => {
   return {
     type: SUCCESS_UNSPLASH,
     payload: {
-      images: images
+      images: images.data.results
     }
   };
 };
