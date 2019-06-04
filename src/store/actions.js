@@ -3,6 +3,7 @@ export const SUCCESS_UNSPLASH = 'SUCCESS_UNSPLASH';
 export const ERROR_UNSPLASH = 'ERROR_UNSPLASH';
 
 export const getUnsplash = term => {
+  console.log(term);
   return {
     type: GET_UNSPLASH,
     payload: {

@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { epicMiddleware, searchImageEpic } from './search.epic';
 
 // types
 const GET_UNSPLASH = 'UNSPLASH--GET_UNSPLASH';
@@ -22,4 +23,5 @@ const reducers = (state = INIT, action) => {
   }
 };
 
-export const store = createStore(reducers);
+export const store = createStore(reducers, applyMiddleware(epicMiddleware));
+epicMiddleware.run(searchImageEpic);
