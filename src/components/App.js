@@ -1,10 +1,11 @@
 import React from 'react';
-import unsplash from '../api/unsplash';
 import SearchBar from './SearchBar';
 import ImageList from './ImageList';
 import { connect } from 'react-redux';
 import { Provider } from 'react-redux';
 import { store } from '../store';
+import { getUnsplash } from '../store/actions';
+
 
 // class App extends React.Component {
 //   state = { images: [] };
@@ -27,21 +28,18 @@ import { store } from '../store';
 //   }
 // }
 
-// const onSeachSubmit = setImages => async term => {
-//   const response = await unsplash.get('/search/photos', {
-//     params: { query: term }
-//   });
-//   setImages(response.data.results);
-// };
-
-export const App = ({ images }) => {
+export const App = ({ images, handleSearchSubmit }) => {
   return (
     <div className='ui container' style={{ marginTop: '10px' }}>
-      <SearchBar onSubmit={() => ({})} />
+      <SearchBar onSubmit={value => handleSearchSubmit(value)} />
       <ImageList images={images} />
     </div>
   );
 };
+
+const mapDispatchToProps = dispatch => ({
+  handleSearchSubmit: value => dispatch(getUnsplash(value))
+});
 
 const mapStateToProps = state => ({
   images: state.images
@@ -49,8 +47,9 @@ const mapStateToProps = state => ({
 
 const Root = connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps
 )(App);
+
 export default () => (
   <Provider store={store}>
     <Root />
