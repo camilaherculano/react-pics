@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from '../store';
 import { getUnsplash } from '../store/actions';
 
+
 // class App extends React.Component {
 //   state = { images: [] };
 
